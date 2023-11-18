@@ -186,3 +186,13 @@
   </div>
 </div>
 {% endblock %}
+<!-- postloadjs -->
+{% block postloadjs %}
+<!-- super -->
+{{ block.super }}
+<!-- stripe public key -->
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+<!-- client secret -->
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{% endblock %}
