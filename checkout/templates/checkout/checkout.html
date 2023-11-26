@@ -108,18 +108,18 @@
           </legend>
           <!-- phone -->
           {{ order_form.phone_number | as_crispy_field }}
-          <!-- country -->
-          {{ order_form.country | as_crispy_field }}
-          <!-- post code -->
-          {{ order_form.postcode | as_crispy_field }}
-          <!-- town/city -->
-          {{order_form.town_or_city | as_crispy_field }}
           <!-- street 1 -->
           {{ order_form.street_address1 | as_crispy_field }}
           <!-- street 2 -->
           {{ order_form.street_address2 | as_crispy_field }}
+          <!-- town/city -->
+          {{order_form.town_or_city | as_crispy_field }}
           <!-- county -->
           {{ order_form.county | as_crispy_field }}
+          <!-- post code -->
+          {{ order_form.postcode | as_crispy_field }}
+          <!-- country -->
+          {{ order_form.country | as_crispy_field }}
           <div class="form-check form-check-inline float-right mr-0">
             {% if user.is_authenticated %}
             <label class="form-check-label" for="id-save-info"
