@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-decant09-boutique-ado-v1-5f3r5tascw.us2.codeanyapp.com',
-    'decant09-boutique-ado.herokuapp.com'
+    'ttps://decant09-boutique-ado-1fbc20ba4984.herokuapp.com/'
     ]
 
 
