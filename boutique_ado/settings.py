@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-$xd2!v3p7cm3g+20jrae=t9f(3kcx8@sl8^u4v&ykew^jpz$!v
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'decant09-boutique-ado-1fbc20ba4984.herokuapp.com/',
+    'decant09-boutique-ado-1fbc20ba4984.herokuapp.com',
     '8000-decant09-boutique-ado-v1-5f3r5tascw.us2.codeanyapp.com']
 
 
