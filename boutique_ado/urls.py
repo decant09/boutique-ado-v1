@@ -29,4 +29,7 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+if settings.DEBUG:  # Add this block to serve static files only in development
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 handler404 = 'boutique_ado.views.handler404'

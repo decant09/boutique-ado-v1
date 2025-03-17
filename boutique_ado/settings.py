@@ -10,7 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import environ
+
+# Initialize environment variables
+env = environ.Env(
+    DEBUG=(bool, False),  # Default to False if not set
+)
+
+# Explicitly load the .env file
+environ.Env.read_env(env_file='.env')
+
+# Use the environment variables
+DEBUG = env.bool('DEBUG', default=False)  # Correctly cast DEBUG as a boolean
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+
+print(f"DEBUG environment variable from env.bool: {env.bool('DEBUG', default=False)}")
+
+
 import os
+print(f"DEBUG environment variable from os.environ: {os.environ.get('DEBUG')}")
+
 import dj_database_url
 from pathlib import Path
 
@@ -25,9 +44,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
+# DEBUG = 'DEVELOPMENT' in os.environ # old
+# DEBUG = os.environ.get('DEBUG') == 'DEVELOPMENT'
+# DEBUG = True
+DEBUG = env.bool('DEBUG', default=False)
+
+if os.environ.get('DEBUG') == 'DEVELOPMENT':
+    DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
     'decant09-boutique-ado-1fbc20ba4984.herokuapp.com',
     '8000-decant09-boutique-ado-v1-5f3r5tascw.us2.codeanyapp.com']
 
@@ -169,8 +196,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# STATIC_URL = '/static/' # old code
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),) # old code
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Where source static files are stored
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where collectstatic gathers files
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
